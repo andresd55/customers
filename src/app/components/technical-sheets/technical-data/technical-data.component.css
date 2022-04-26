@@ -1,0 +1,12 @@
+.lblBlock {
+  display: block;
+}
+
+.lblWithBreak {
+  white-space: initial;
+  word-break: break;
+}
+
+.thead-width {
+  width: 100%;
+}

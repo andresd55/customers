@@ -1,0 +1,225 @@
+<form class="mt-16" #mydiv [formGroup]="mallasDataForm">
+  <div class="row">
+    <div class="col-12">
+      <div class="table-responsive">
+        <p-table-finotex
+          #tablaFinotex
+          class="f-table"
+          [value]="mallasFormCall.controls"
+          dataKey="id"
+          [expandedRowKeys]="expandedRows"
+        >
+          <ng-template pTemplate="header">
+            <tr>
+              <th style="width: 3rem"></th>
+              <th>
+                <label>
+                  {{ "mallasForm.typeMaterial" | translate }}
+                </label>
+              </th>
+              <th>
+                <label>
+                  {{ "mallasForm.description" | translate }}
+                </label>
+              </th>
+              <th>
+                <label>
+                  {{ "mallasForm.meshId" | translate }}
+                </label>
+              </th>
+            </tr>
+          </ng-template>
+          <ng-template
+            formArrayName="header"
+            let-rowIndex="rowIndex"
+            pTemplate="body"
+            let-mallaDatas
+            let-expanded="expanded"
+          >
+            <tr [formGroupName]="rowIndex">
+              <td>
+                <span
+                  type="button"
+                  pButton
+                  pRipple
+                  (click)="onItemClick(mallaDatas.value, tablaFinotex)"
+                  class="p-button-text p-button-rounded p-button-plain"
+                  [icon]="
+                    expanded ? 'pi pi-chevron-down' : 'pi pi-chevron-right'
+                  "
+                ></span>
+              </td>
+              <td>
+                <input
+                  type="text"
+                  formControlName="typeMaterial"
+                  pInputText
+                  class="form-control"
+                />
+              </td>
+              <td>
+                <input
+                  type="text"
+                  formControlName="description"
+                  pInputText
+                  class="form-control"
+                />
+              </td>
+              <td>
+                <app-search-selector
+                  placeholder="mallasForm.meshId"
+                  formControlName="meshId"
+                ></app-search-selector>
+              </td>
+            </tr>
+          </ng-template>
+          <ng-template
+            formArrayName="header"
+            let-rowIndex="rowIndex"
+            pTemplate="rowexpansion"
+            let-materials
+          >
+            <tr [formGroupName]="rowIndex">
+              <td colspan="4">
+                <div class="row">
+                  <div class="col-12 col-md-3 mt-2">
+                    <label>
+                      {{ "mallasForm.frameNumber" | translate }}
+                    </label>
+                    <input
+                      type="text"
+                      formControlName="frameNumber"
+                      pInputText
+                      class="form-control"
+                    />
+                  </div>
+                  <div class="col-12 col-md-3 mt-2">
+                    <label>
+                      {{ "mallasForm.pressure" | translate }}
+                    </label>
+                    <input
+                      type="text"
+                      formControlName="pressure"
+                      pInputText
+                      class="form-control"
+                    />
+                  </div>
+                  <div class="col-12 col-md-3 mt-2">
+                    <label>
+                      {{ "mallasForm.light" | translate }}
+                    </label>
+                    <input
+                      type="text"
+                      formControlName="light"
+                      pInputText
+                      class="form-control"
+                    />
+                  </div>
+                  <div class="col-12 col-md-3 mt-2">
+                    <label>
+                      {{ "mallasForm.squeegeeSpeed" | translate }}
+                    </label>
+                    <input
+                      type="text"
+                      formControlName="squeegeeSpeed"
+                      pInputText
+                      class="form-control"
+                    />
+                  </div>
+                  <div class="col-12 col-md-3 mt-2">
+                    <label>
+                      {{ "mallasForm.squeegeePressure" | translate }}
+                    </label>
+                    <input
+                      type="text"
+                      formControlName="squeegeePressure"
+                      pInputText
+                      class="form-control"
+                    />
+                  </div>
+                  <div class="col-12 col-md-3 mt-2">
+                    <label>
+                      {{ "mallasForm.squeegeAngle" | translate }}
+                    </label>
+                    <input
+                      type="text"
+                      formControlName="squeegeAngle"
+                      pInputText
+                      class="form-control"
+                    />
+                  </div>
+                  <div class="col-12 col-md-3 mt-2">
+                    <label>
+                      {{ "mallasForm.floodBarPressure" | translate }}
+                    </label>
+                    <input
+                      type="text"
+                      formControlName="floodBarPressure"
+                      pInputText
+                      class="form-control"
+                    />
+                  </div>
+                  <div class="col-12 col-md-3 mt-2">
+                    <label>
+                      {{ "mallasForm.fpmSpeed" | translate }}
+                    </label>
+                    <input
+                      type="text"
+                      formControlName="fpmSpeed"
+                      pInputText
+                      class="form-control"
+                    />
+                  </div>
+                  <div class="col-12 col-md-3 mt-2" *ngIf="showOutletHeat">
+                    <label>
+                      {{ "mallasForm.outletHeat" | translate }}
+                    </label>
+                    <input
+                      type="text"
+                      formControlName="outletHeat"
+                      pInputText
+                      class="form-control"
+                    />
+                  </div>
+                  <div class="col-12 col-md-3 mt-2" *ngIf="showMiddleHeat">
+                    <label>
+                      {{ "mallasForm.middleHeat" | translate }}
+                    </label>
+                    <input
+                      type="text"
+                      formControlName="middleHeat"
+                      pInputText
+                      class="form-control"
+                    />
+                  </div>
+                  <div class="col-12 col-md-3 mt-2">
+                    <label>
+                      {{ "mallasForm.inletHeat" | translate }}
+                    </label>
+                    <input
+                      type="text"
+                      formControlName="inletHeat"
+                      pInputText
+                      class="form-control"
+                    />
+                  </div>
+                  <div class="col-12 col-md-9 mt-2">
+                    <label>
+                      {{ "mallasForm.commnets" | translate }}
+                    </label>
+                    <input
+                      type="text"
+                      formControlName="commnets"
+                      pInputText
+                      class="form-control"
+                    />
+                  </div>
+                </div>
+              </td>
+            </tr>
+          </ng-template>
+        </p-table-finotex>
+      </div>
+    </div>
+  </div>
+</form>

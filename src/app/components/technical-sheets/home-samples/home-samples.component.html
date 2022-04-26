@@ -1,0 +1,67 @@
+<p-breadcrumb
+  [model]="itemsBreadcrumb"
+  [tittle]="'technical-sheets.general_sales'"
+  [description]="'technical-sheets.decription_sales'"
+></p-breadcrumb>
+
+<p-tabView [(activeIndex)]="activeIndex">
+  <p-tabPanel
+    header="{{ 'technical-sheets.data_of_sale_and_article' | translate }}"
+  >
+    <app-general-data-of-sample
+      paramCustomerId="{{ paramCustomerId }}"
+      (checkValueAutomatic)="automaticCode($event)"
+      (paramProductionPlanId)="receiveProductionPlanId($event)"
+      (paramZone)="getZoneName($event)"
+    ></app-general-data-of-sample>
+
+    <app-identification-data
+      paramCustomerId="{{ paramCustomerId }}"
+      (paramLineId)="receiveLineId($event)"
+      (paramLongProduction)="receiveLargeProduction($event)"
+    ></app-identification-data>
+
+    <app-image-settings
+      paramCustomerId="{{ paramCustomerId }}"
+    ></app-image-settings>
+
+    <app-inventory-tweaks></app-inventory-tweaks>
+
+    <app-customer-reference
+      paramCustomerId="{{ paramCustomerId }}"
+    ></app-customer-reference>
+
+    <app-additional-properties>
+      paramCustomerId="{{ paramCustomerId }}">
+    </app-additional-properties>
+
+    <div class="row">
+      <div class="col-12 text-left">
+        <button
+          pButton
+          type="button"
+          routerLink="/home/customers_list/"
+          label="{{ 'general.btnreturn' | translate }}"
+          class="button button-secundary filter mr-1"
+          style="margin-top: 20px"
+        ></button>
+      </div>
+    </div>
+  </p-tabPanel>
+
+  <p-tabPanel header="{{ 'technical-sheets.materials' | translate }}">
+    <app-technical-data
+      (paramLongProductionUpdate)="receiveLargeProductionUpdate($event)"
+    ></app-technical-data>
+    <app-materials
+      (paramTotalPickHilo)="receiveTotalPickHilo($event)"
+      (paramTotalPickcolor)="receiveTotalPickcolor($event)"
+    ></app-materials>
+  </p-tabPanel>
+
+  <p-tabPanel
+    header="{{ 'technical-sheets.quality_process_control' | translate }}"
+  >
+    <ng-template pTemplate="content"> 3 </ng-template>
+  </p-tabPanel>
+</p-tabView>
